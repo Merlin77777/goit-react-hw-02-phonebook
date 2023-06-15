@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import ContactItem from './ContactItem';
 
 export class App extends Component {
   state = {
@@ -24,14 +25,8 @@ export class App extends Component {
     }));
   };
 
-  listContacts = () => {
-    const list = this.state.contacts.map(
-      contact => '*' + contact.name + ' ' + contact.number + '\r'
-    );
-    return list;
-  };
-
   render() {
+    const { contacts } = this.state;
     return (
       <>
         <h1>Phonenook</h1>
@@ -58,7 +53,12 @@ export class App extends Component {
             </p>
           </form>
           <h2>Contacts</h2>
-          {this.listContacts()}
+          {/* {this.listContacts()} */}
+          <ul>
+            {contacts.map(item => (
+              <ContactItem {...item} />
+            ))}
+          </ul>
         </div>
       </>
     );
