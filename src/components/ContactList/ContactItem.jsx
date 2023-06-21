@@ -10,7 +10,7 @@ const ContactItem = ({ id, name, number }) => {
 
 ContactItem.propTypes = {
   name: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
+  number: PropTypes.string.isRequired,
 };
 
 export default ContactItem;
