@@ -18,7 +18,7 @@ export class App extends Component {
   handleSubmit = contactItem => {
     const { name } = contactItem;
     if (this.state.contacts.some(contact => contact.name === name)) {
-      Notiflix.Report.warning('Warning!', '${name} is already in contacts.');
+      Notiflix.Report.warning('Warning!', `${name} is already in contacts.`);
     } else {
       this.setState(({ contacts }) => ({
         contacts: [contactItem, ...contacts],
