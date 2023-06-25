@@ -3,6 +3,7 @@ import { ContactForm } from '../ContactForm/ContactForm';
 import { Filter } from '../Filter/Filter';
 import { ContactList } from '../ContactList/ContactList';
 import Notiflix from 'notiflix';
+import { Container } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -38,18 +39,27 @@ export class App extends Component {
     );
   };
 
+  deleteContact = id => {
+    this.setState(PrevState => ({
+      contacts: PrevState.contacts.filter(contact => contact.id !== id),
+    }));
+  };
+
   render() {
     const visibleContacts = this.getFilterContact();
     return (
-      <>
+      <Container>
         <h1>Phonebook</h1>
         <div>
           <ContactForm handleSubmit={this.handleSubmit} />
           <h2>Contacts</h2>
           <Filter onChangeFilter={this.onChangeFilter} />
-          <ContactList onVisibleContacts={visibleContacts} />
+          <ContactList
+            onVisibleContacts={visibleContacts}
+            onDeleteContact={this.deleteContact}
+          />
         </div>
-      </>
+      </Container>
     );
   }
 }

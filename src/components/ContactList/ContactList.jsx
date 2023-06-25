@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 
-export function ContactList({ onVisibleContacts }) {
+export function ContactList({ onVisibleContacts, onDeleteContact }) {
   return (
     <ul>
       {onVisibleContacts.map(item => (
@@ -10,6 +10,7 @@ export function ContactList({ onVisibleContacts }) {
           id={item.id}
           name={item.name}
           number={item.number}
+          deleteContact={onDeleteContact}
         />
       ))}
     </ul>
@@ -18,4 +19,5 @@ export function ContactList({ onVisibleContacts }) {
 
 ContactList.propTypes = {
   onVisibleContacts: PropTypes.array.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
