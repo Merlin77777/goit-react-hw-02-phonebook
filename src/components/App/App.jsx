@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { Filter } from '../Filter/Filter';
 import { ContactList } from '../ContactList/ContactList';
+import Notiflix from 'notiflix';
 
 export class App extends Component {
   state = {
@@ -15,9 +16,14 @@ export class App extends Component {
   };
 
   handleSubmit = contactItem => {
-    this.setState(({ contacts }) => ({
-      contacts: [contactItem, ...contacts],
-    }));
+    const { name } = contactItem;
+    if (this.state.contacts.some(contact => contact.name === name)) {
+      Notiflix.Report.warning('Warning!', '${name} is already in contacts.');
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [contactItem, ...contacts],
+      }));
+    }
   };
 
   onChangeFilter = evt => {
